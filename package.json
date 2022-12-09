@@ -1,0 +1,26 @@
+{
+  "name": "cli-file-manager",
+  "version": "1.0.0",
+  "description": "CLI File Manager using Node.js APIs.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:bumble": "node src/index.js -- --username=Bumble"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bumble-sakh/node-cli-file-manager.git"
+  },
+  "keywords": [
+    "nodejs",
+    "Bumble",
+    "cli",
+    "file manager"
+  ],
+  "author": "Bumble-sakh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bumble-sakh/node-cli-file-manager/issues"
+  },
+  "homepage": "https://github.com/Bumble-sakh/node-cli-file-manager#readme"
+}
