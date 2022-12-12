@@ -5,7 +5,10 @@ export const ls = async () => {
   try {
     const files = await readdir(store.currentPath, { withFileTypes: true });
     const result = files.map((file) => {
-      return { name: file.name, type: file.isFile() ? 'file' : 'directory' };
+      return {
+        name: file.name,
+        type: file.isFile() ? 'file' : file.isDirectory() ? 'directory' : file.isSymbolicLink() ? 'link' : 'unknown',
+      };
     });
 
     result
