@@ -7,6 +7,8 @@ import { ls } from './nwd/ls.js';
 import { os } from './os/os.js';
 import { OS_ARGUMENTS } from '../constants/osArguments.js';
 import { hash } from './hash/hash.js';
+import { compress } from './brotli/compress.js';
+import { decompress } from './brotli/decompress.js';
 
 export const commandReducer = async ({ command, payload }) => {
   switch (command) {
@@ -74,6 +76,28 @@ export const commandReducer = async ({ command, payload }) => {
       }
 
       await hash(...payload);
+
+      console.log(`You are currently in ${store.currentPath}`);
+      break;
+
+    case COMMANDS.compress:
+      if (payload.length !== 2) {
+        stdin.emit('operationFailed');
+        break;
+      }
+
+      await compress(...payload);
+
+      console.log(`You are currently in ${store.currentPath}`);
+      break;
+
+    case COMMANDS.decompress:
+      if (payload.length !== 2) {
+        stdin.emit('operationFailed');
+        break;
+      }
+
+      await decompress(...payload);
 
       console.log(`You are currently in ${store.currentPath}`);
       break;
