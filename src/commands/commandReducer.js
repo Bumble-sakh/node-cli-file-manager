@@ -10,6 +10,15 @@ import { hash } from './hash/hash.js';
 
 export const commandReducer = async ({ command, payload }) => {
   switch (command) {
+    case COMMANDS['.exit']:
+      if (payload.length > 0) {
+        stdin.emit('operationFailed');
+        break;
+      }
+
+      process.exit(0);
+      break;
+
     case COMMANDS.up:
       if (payload.length > 0) {
         stdin.emit('operationFailed');

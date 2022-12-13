@@ -23,15 +23,13 @@ export const app = (userName) => {
     const [command, ...payload] = parseInput(data);
 
     stdin.emit('command', { command: COMMANDS[command], payload });
-
-    if (command == '.exit') {
-      console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
-      process.exit(0);
-    }
   });
 
   process.on('SIGINT', () => {
-    console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
     process.exit(0);
+  });
+
+  process.on('exit', () => {
+    console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
   });
 };
