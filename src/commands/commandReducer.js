@@ -27,7 +27,7 @@ export const commandReducer = async ({ command, payload }) => {
         break;
       }
 
-      console.clear();
+      process.stdout.write('\x1Bc');
 
       console.log(`You are currently in ${store.currentPath}`);
       break;
