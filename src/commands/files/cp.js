@@ -1,5 +1,4 @@
 import path from 'path';
-import fs from 'fs';
 import { open } from 'fs/promises';
 import store from '../../store/store.js';
 import { copyFile } from '../../helpers/index.js';
