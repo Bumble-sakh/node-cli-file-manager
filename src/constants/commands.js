@@ -2,11 +2,12 @@ export let COMMANDS;
 
 (function (commands) {
   commands[(commands['.exit'] = 0)] = '.exit';
-  commands[(commands['up'] = 1)] = 'up';
-  commands[(commands['ls'] = 2)] = 'ls';
-  commands[(commands['cd'] = 3)] = 'cd';
-  commands[(commands['os'] = 4)] = 'os';
-  commands[(commands['hash'] = 5)] = 'hash';
-  commands[(commands['compress'] = 6)] = 'compress';
-  commands[(commands['decompress'] = 7)] = 'decompress';
+  commands[(commands['.clear'] = 1)] = '.clear';
+  commands[(commands['up'] = 2)] = 'up';
+  commands[(commands['ls'] = 3)] = 'ls';
+  commands[(commands['cd'] = 4)] = 'cd';
+  commands[(commands['os'] = 5)] = 'os';
+  commands[(commands['hash'] = 6)] = 'hash';
+  commands[(commands['compress'] = 7)] = 'compress';
+  commands[(commands['decompress'] = 8)] = 'decompress';
 })(COMMANDS || (COMMANDS = {}));

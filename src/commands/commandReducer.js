@@ -21,6 +21,17 @@ export const commandReducer = async ({ command, payload }) => {
       process.exit(0);
       break;
 
+    case COMMANDS['.clear']:
+      if (payload.length > 0) {
+        stdin.emit('operationFailed');
+        break;
+      }
+
+      console.clear();
+
+      console.log(`You are currently in ${store.currentPath}`);
+      break;
+
     case COMMANDS.up:
       if (payload.length > 0) {
         stdin.emit('operationFailed');
