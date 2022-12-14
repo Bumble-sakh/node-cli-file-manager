@@ -15,4 +15,5 @@ export let COMMANDS;
   commands[(commands['rn'] = 11)] = 'rn';
   commands[(commands['cp'] = 12)] = 'cp';
   commands[(commands['mv'] = 13)] = 'mv';
+  commands[(commands['rm'] = 14)] = 'rm';
 })(COMMANDS || (COMMANDS = {}));
