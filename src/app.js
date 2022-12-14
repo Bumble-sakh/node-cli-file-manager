@@ -19,6 +19,7 @@ export const app = (userName) => {
 
   stdin.on('operationFailed', () => {
     console.log('Operation failed');
+    console.log(`You are currently in ${store.startPath}`);
   });
 
   stdin.on('data', (data) => {
