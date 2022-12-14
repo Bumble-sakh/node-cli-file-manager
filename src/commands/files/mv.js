@@ -1,7 +1,7 @@
 import path from 'path';
-import { open, rm as unlink } from 'fs/promises';
-import store from '../../store/store.js';
+import { open, unlink } from 'fs/promises';
 import { copyFile } from '../../helpers/index.js';
+import store from '../../store/store.js';
 
 export const mv = async (pathToFile, pathToNewDir) => {
   const sourcePath = path.resolve(store.currentPath, pathToFile);
