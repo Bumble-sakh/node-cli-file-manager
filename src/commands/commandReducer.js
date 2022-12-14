@@ -11,6 +11,7 @@ import { compress } from './brotli/compress.js';
 import { decompress } from './brotli/decompress.js';
 import { cat } from './files/cat.js';
 import { add } from './files/add.js';
+import { rn } from './files/rn.js';
 
 export const commandReducer = async ({ command, payload }) => {
   switch (command) {
@@ -133,6 +134,17 @@ export const commandReducer = async ({ command, payload }) => {
       }
 
       await add(...payload);
+
+      console.log(`You are currently in ${store.currentPath}`);
+      break;
+
+    case COMMANDS.rn:
+      if (payload.length !== 2) {
+        stdin.emit('operationFailed');
+        break;
+      }
+
+      await rn(...payload);
 
       console.log(`You are currently in ${store.currentPath}`);
       break;
