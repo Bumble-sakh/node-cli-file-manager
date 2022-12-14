@@ -11,4 +11,5 @@ export let COMMANDS;
   commands[(commands['compress'] = 7)] = 'compress';
   commands[(commands['decompress'] = 8)] = 'decompress';
   commands[(commands['cat'] = 9)] = 'cat';
+  commands[(commands['add'] = 10)] = 'add';
 })(COMMANDS || (COMMANDS = {}));

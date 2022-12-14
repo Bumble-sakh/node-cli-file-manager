@@ -10,6 +10,7 @@ import { hash } from './hash/hash.js';
 import { compress } from './brotli/compress.js';
 import { decompress } from './brotli/decompress.js';
 import { cat } from './files/cat.js';
+import { add } from './files/add.js';
 
 export const commandReducer = async ({ command, payload }) => {
   switch (command) {
@@ -121,6 +122,17 @@ export const commandReducer = async ({ command, payload }) => {
       }
 
       await cat(...payload);
+
+      console.log(`You are currently in ${store.currentPath}`);
+      break;
+
+    case COMMANDS.add:
+      if (payload.length !== 1) {
+        stdin.emit('operationFailed');
+        break;
+      }
+
+      await add(...payload);
 
       console.log(`You are currently in ${store.currentPath}`);
       break;
