@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 export const copyFile = (sourcePath, destinationPath) => {
   return new Promise((resolve, reject) => {
     const input = fs.createReadStream(sourcePath, { flags: 'r', encoding: 'utf-8' });
