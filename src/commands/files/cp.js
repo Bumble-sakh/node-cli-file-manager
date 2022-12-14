@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { open } from 'fs/promises';
 import store from '../../store/store.js';
-import { copyFile } from '../../helpers/copyFile.js';
+import { copyFile } from '../../helpers';
 
 export const cp = async (pathToFile, pathToNewDir) => {
   const sourcePath = path.resolve(store.currentPath, pathToFile);

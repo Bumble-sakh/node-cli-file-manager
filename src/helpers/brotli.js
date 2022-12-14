@@ -1,6 +1,6 @@
 import fs from 'fs';
 import zlib from 'zlib';
-import { BROTLI_ACTIONS } from '../../constants/brotliActions.js';
+import { BROTLI_ACTIONS } from '../constants/brotliActions.js';
 
 export const brotli = async (readFile, writeFile, action) => {
   return new Promise((resolve, reject) => {

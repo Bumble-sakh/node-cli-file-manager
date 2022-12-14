@@ -1,18 +1,15 @@
-import store from '../store/store.js';
 import { stdin } from 'process';
-import { COMMANDS } from '../constants/commands.js';
-import { up } from './nwd/up.js';
-import { cd } from './nwd/cd.js';
-import { ls } from './nwd/ls.js';
-import { os } from './os/os.js';
-import { OS_ARGUMENTS } from '../constants/osArguments.js';
-import { hash } from './hash/hash.js';
-import { compress } from './brotli/compress.js';
-import { decompress } from './brotli/decompress.js';
-import { cat } from './files/cat.js';
-import { add } from './files/add.js';
-import { rn } from './files/rn.js';
-import { cp } from './files/cp.js';
+
+import { up, cd, ls } from './commands/nwd';
+import { cat, add, rn, cp } from './commands/files';
+import { os } from './commands/os';
+import { hash } from './commands/hash';
+import { compress, decompress } from './commands/brotli';
+
+import store from './store/store.js';
+
+import { COMMANDS } from './constants/commands.js';
+import { OS_ARGUMENTS } from './constants/osArguments.js';
 
 export const commandReducer = async ({ command, payload }) => {
   switch (command) {
