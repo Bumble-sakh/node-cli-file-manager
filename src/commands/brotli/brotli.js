@@ -16,7 +16,7 @@ export const brotli = async (readFile, writeFile, action) => {
     stream.on('error', reject);
 
     stream.on('finish', () => {
-      const doneText = BROTLI_ACTIONS.compress ? 'Compress done' : 'Decompress done';
+      const doneText = action === BROTLI_ACTIONS.compress ? 'Compress done' : 'Decompress done';
       console.log(doneText);
       resolve();
     });
