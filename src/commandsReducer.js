@@ -1,10 +1,10 @@
 import { stdin } from 'process';
 
-import { up, cd, ls } from './commands/nwd';
-import { cat, add, rn, cp } from './commands/files';
-import { os } from './commands/os';
-import { hash } from './commands/hash';
-import { compress, decompress } from './commands/brotli';
+import { up, cd, ls } from './commands/nwd/index.js';
+import { cat, add, rn, cp } from './commands/files/index.js';
+import { os } from './commands/os/index.js';
+import { hash } from './commands/hash/index.js';
+import { compress, decompress } from './commands/brotli/index.js';
 
 import store from './store/store.js';
 

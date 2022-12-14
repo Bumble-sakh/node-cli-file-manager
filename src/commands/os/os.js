@@ -1,5 +1,5 @@
 import { stdin } from 'process';
-import { architecture, cpus, eol, homedir, username } from './arguments';
+import { architecture, cpus, eol, homedir, username } from './arguments/index.js';
 
 import { OS_ARGUMENTS } from '../../constants/osArguments.js';
 

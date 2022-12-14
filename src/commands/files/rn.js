@@ -4,7 +4,7 @@ import store from '../../store/store.js';
 
 export const rn = async (filePath, fileName) => {
   const oldPath = path.resolve(store.currentPath, filePath);
-  const newPath = path.resolve(store.currentPath, fileName);
+  const newPath = path.resolve(oldPath, fileName);
 
   try {
     const file = await open(newPath, 'wx');

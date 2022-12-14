@@ -1,9 +1,9 @@
 import store from './store/store.js';
 
 import { stdin } from 'process';
-import { commandReducer } from './commands/commandReducer.js';
+import { commandReducer } from './commandsReducer.js';
 import { COMMANDS } from './constants/commands.js';
-import { parseInput } from '../../helpers';
+import { parseInput } from './helpers/index.js';
 
 export const app = (userName) => {
   console.log(`Welcome to the File Manager, ${userName}!`);
