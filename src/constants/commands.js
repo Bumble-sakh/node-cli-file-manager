@@ -10,4 +10,5 @@ export let COMMANDS;
   commands[(commands['hash'] = 6)] = 'hash';
   commands[(commands['compress'] = 7)] = 'compress';
   commands[(commands['decompress'] = 8)] = 'decompress';
+  commands[(commands['cat'] = 9)] = 'cat';
 })(COMMANDS || (COMMANDS = {}));

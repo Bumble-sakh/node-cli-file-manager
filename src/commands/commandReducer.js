@@ -9,6 +9,7 @@ import { OS_ARGUMENTS } from '../constants/osArguments.js';
 import { hash } from './hash/hash.js';
 import { compress } from './brotli/compress.js';
 import { decompress } from './brotli/decompress.js';
+import { cat } from './files/cat.js';
 
 export const commandReducer = async ({ command, payload }) => {
   switch (command) {
@@ -109,6 +110,17 @@ export const commandReducer = async ({ command, payload }) => {
       }
 
       await decompress(...payload);
+
+      console.log(`You are currently in ${store.currentPath}`);
+      break;
+
+    case COMMANDS.cat:
+      if (payload.length !== 1) {
+        stdin.emit('operationFailed');
+        break;
+      }
+
+      await cat(...payload);
 
       console.log(`You are currently in ${store.currentPath}`);
       break;
