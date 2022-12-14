@@ -1,6 +1,6 @@
 import store from './store/store.js';
 
-import { stdin } from 'process';
+import { stdin, stdout } from 'process';
 import { commandReducer } from './commands/commandReducer.js';
 import { COMMANDS } from './constants/commands.js';
 import { parseInput } from './helpers/parseInput.js';
@@ -13,6 +13,8 @@ export const app = (userName) => {
 
   stdin.on('command', async (command) => {
     await commandReducer(command);
+
+    stdin.resume();
   });
 
   stdin.on('operationFailed', () => {
@@ -20,6 +22,8 @@ export const app = (userName) => {
   });
 
   stdin.on('data', (data) => {
+    stdin.pause();
+
     const [command, ...payload] = parseInput(data);
 
     stdin.emit('command', { command: COMMANDS[command], payload });
