@@ -1,6 +1,6 @@
 import { open } from 'fs/promises';
 import { BROTLI_ACTIONS } from '../../constants/brotliActions.js';
-import { brotli } from '../../helpers/index.js';
+import { brotli } from '../../helpers/brotli.js';
 import { correctPath } from '../../helpers/correctPath.js';
 
 export const compress = async (filePath, destinationPath) => {
