@@ -1,9 +1,8 @@
-import path from 'path';
 import { unlink } from 'fs/promises';
-import store from '../../store/store.js';
+import { correctPath } from '../../helpers/correctPath.js';
 
 export const rm = async (pathToFile) => {
-  const sourcePath = path.resolve(store.currentPath, pathToFile);
+  const sourcePath = correctPath(pathToFile);
 
   try {
     await unlink(sourcePath);

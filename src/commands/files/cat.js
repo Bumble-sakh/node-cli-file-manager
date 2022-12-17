@@ -1,7 +1,6 @@
-import path from 'path';
 import fs from 'fs';
 import { stdout } from 'process';
-import store from '../../store/store.js';
+import { correctPath } from '../../helpers/correctPath.js';
 
 const readFile = (destinationPath) => {
   return new Promise((resolve, reject) => {
@@ -19,7 +18,7 @@ const readFile = (destinationPath) => {
 };
 
 export const cat = async (filePath) => {
-  const destinationPath = path.resolve(store.currentPath, filePath);
+  const destinationPath = correctPath(filePath);
 
   try {
     await readFile(destinationPath);

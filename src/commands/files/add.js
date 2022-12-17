@@ -1,9 +1,8 @@
-import path from 'path';
 import { open } from 'fs/promises';
-import store from '../../store/store.js';
+import { correctPath } from '../../helpers/correctPath.js';
 
 export const add = async (filePath) => {
-  const destinationPath = path.resolve(store.currentPath, filePath);
+  const destinationPath = correctPath(filePath);
 
   try {
     const file = await open(destinationPath, 'wx');

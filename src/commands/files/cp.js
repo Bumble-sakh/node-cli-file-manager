@@ -1,12 +1,12 @@
 import path from 'path';
 import { open } from 'fs/promises';
-import store from '../../store/store.js';
-import { copyFile } from '../../helpers/index.js';
+import { copyFile } from '../../helpers/copyFile.js';
+import { correctPath } from '../../helpers/correctPath.js';
 
 export const cp = async (pathToFile, pathToNewDir) => {
-  const sourcePath = path.resolve(store.currentPath, pathToFile);
+  const sourcePath = correctPath(pathToFile);
   const fileName = path.parse(sourcePath).base;
-  const destinationPath = path.resolve(store.currentPath, pathToNewDir, fileName);
+  const destinationPath = path.resolve(correctPath(pathToNewDir), fileName);
 
   try {
     const file = await open(sourcePath, 'r');

@@ -3,7 +3,7 @@ import store from './store/store.js';
 import { stdin } from 'process';
 import { commandReducer } from './commandsReducer.js';
 import { COMMANDS } from './constants/commands.js';
-import { parseInput } from './helpers/index.js';
+import { parseInput } from './helpers/parseInput.js';
 
 export const app = (userName) => {
   console.log(`Welcome to the File Manager, ${userName}!`);

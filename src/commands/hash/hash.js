@@ -1,7 +1,6 @@
 import crypto from 'crypto';
 import fs from 'fs';
-import path from 'path';
-import store from '../../store/store.js';
+import { correctPath } from '../../helpers/correctPath.js';
 
 const getChecksum = (destinationPath) => {
   return new Promise((resolve, reject) => {
@@ -9,6 +8,8 @@ const getChecksum = (destinationPath) => {
     const input = fs.createReadStream(destinationPath);
 
     input.on('error', reject);
+
+    input.on('open', () => console.log('Hashing: ', destinationPath));
 
     input.on('data', (chunk) => {
       hash.update(chunk);
@@ -21,8 +22,7 @@ const getChecksum = (destinationPath) => {
 };
 
 export const hash = async (filePath) => {
-  const destinationPath = path.resolve(store.currentPath, filePath);
-  console.log('Hashing: ', destinationPath);
+  const destinationPath = correctPath(filePath);
 
   try {
     const hash = await getChecksum(destinationPath);

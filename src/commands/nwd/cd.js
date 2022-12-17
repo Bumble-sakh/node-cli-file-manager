@@ -1,9 +1,9 @@
-import path from 'path';
 import { access, constants } from 'fs/promises';
 import store from '../../store/store.js';
+import { correctPath } from '../../helpers/correctPath.js';
 
 export const cd = async (destinationPath) => {
-  const currentPath = path.resolve(store.currentPath, destinationPath);
+  const currentPath = correctPath(destinationPath);
 
   try {
     await access(currentPath, constants.R_OK);
