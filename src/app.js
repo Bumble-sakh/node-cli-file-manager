@@ -4,10 +4,14 @@ import { stdin } from 'process';
 import { commandReducer } from './commandsReducer.js';
 import { COMMANDS } from './constants/commands.js';
 import { parseInput } from './helpers/parseInput.js';
+import { colorText } from './helpers/colorText.js';
+import { COLORS } from './constants/colors.js';
 
 export const app = (userName) => {
-  console.log(`Welcome to the File Manager, ${userName}!`);
-  console.log(`You are currently in ${store.startPath}`);
+  console.log(`Welcome to the File Manager, ${colorText(userName, COLORS.fg.blue)}!`);
+  console.log(
+    `You are currently in ${colorText(store.startPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+  );
 
   stdin.read();
 
@@ -18,8 +22,10 @@ export const app = (userName) => {
   });
 
   stdin.on('operationFailed', () => {
-    console.log('Operation failed');
-    console.log(`You are currently in ${store.startPath}`);
+    console.error(colorText('Operation failed', COLORS.fg.red));
+    console.log(
+      `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+    );
   });
 
   stdin.on('data', (data) => {
@@ -35,6 +41,6 @@ export const app = (userName) => {
   });
 
   process.on('exit', () => {
-    console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
+    console.log(`Thank you for using File Manager, ${colorText(userName, COLORS.fg.blue)}, goodbye!`);
   });
 };

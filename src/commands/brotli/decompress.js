@@ -2,6 +2,8 @@ import { open } from 'fs/promises';
 import { BROTLI_ACTIONS } from '../../constants/brotliActions.js';
 import { brotli } from '../../helpers/brotli.js';
 import { correctPath } from '../../helpers/correctPath.js';
+import { colorText } from '../../helpers/colorText.js';
+import { COLORS } from '../../constants/colors.js';
 
 export const decompress = async (filePath, destinationPath) => {
   const readFile = correctPath(filePath);
@@ -12,6 +14,6 @@ export const decompress = async (filePath, destinationPath) => {
     file.close();
     await brotli(readFile, writeFile, BROTLI_ACTIONS.decompress);
   } catch (error) {
-    console.log(error.message);
+    console.error(colorText(error.message, COLORS.fg.red));
   }
 };

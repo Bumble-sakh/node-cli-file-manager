@@ -1,5 +1,7 @@
 import { readdir } from 'fs/promises';
 import store from '../../store/store.js';
+import { colorText } from '../../helpers/colorText.js';
+import { COLORS } from '../../constants/colors.js';
 
 export const ls = async () => {
   try {
@@ -32,7 +34,7 @@ export const ls = async () => {
       });
 
     console.table(result);
-  } catch (err) {
-    console.error(err.message);
+  } catch (error) {
+    console.error(colorText(error.message, COLORS.fg.red));
   }
 };

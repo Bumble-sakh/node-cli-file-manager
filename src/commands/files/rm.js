@@ -1,12 +1,17 @@
 import { unlink } from 'fs/promises';
 import { correctPath } from '../../helpers/correctPath.js';
+import { colorText } from '../../helpers/colorText.js';
+import { COLORS } from '../../constants/colors.js';
+import { parse } from 'path';
 
 export const rm = async (pathToFile) => {
   const sourcePath = correctPath(pathToFile);
+  const fileName = parse(sourcePath).base;
 
   try {
     await unlink(sourcePath);
+    console.log(colorText(fileName, COLORS.fg.cyan), colorText('deleted.', COLORS.fg.green));
   } catch (error) {
-    console.log(error.message);
+    console.error(colorText(error.message, COLORS.fg.red));
   }
 };

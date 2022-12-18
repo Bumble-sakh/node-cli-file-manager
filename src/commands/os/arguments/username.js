@@ -1,11 +1,13 @@
 import os from 'os';
+import { colorText } from '../../../helpers/colorText.js';
+import { COLORS } from '../../../constants/colors.js';
 
 export const username = () => {
   try {
     const userInfo = os.userInfo();
 
-    console.log('Username: ', userInfo.username);
+    console.log(`${colorText('Username: ', COLORS.fg.green)}${colorText(userInfo.username, COLORS.fg.blue)}`);
   } catch (error) {
-    console.log(error.message);
+    console.error(colorText(error.message, COLORS.fg.red));
   }
 };

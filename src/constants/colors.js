@@ -16,7 +16,6 @@ export const COLORS = {
     magenta: '\x1b[35m',
     cyan: '\x1b[36m',
     white: '\x1b[37m',
-    crimson: '\x1b[38m',
   },
 
   bg: {
@@ -28,6 +27,5 @@ export const COLORS = {
     magenta: '\x1b[45m',
     cyan: '\x1b[46m',
     white: '\x1b[47m',
-    crimson: '\x1b[48m',
   },
 };

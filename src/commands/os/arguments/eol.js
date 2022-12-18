@@ -1,5 +1,11 @@
 import os from 'os';
+import { colorText } from '../../../helpers/colorText.js';
+import { COLORS } from '../../../constants/colors.js';
 
 export const eol = () => {
-  console.log('EOL: ', JSON.stringify(os.EOL));
+  try {
+    console.log(`${colorText('EOL: ', COLORS.fg.green)}${colorText(JSON.stringify(os.EOL), COLORS.fg.blue)}`);
+  } catch (error) {
+    console.error(colorText(error.message, COLORS.fg.red));
+  }
 };

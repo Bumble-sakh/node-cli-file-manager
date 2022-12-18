@@ -10,6 +10,8 @@ import store from './store/store.js';
 
 import { COMMANDS } from './constants/commands.js';
 import { OS_ARGUMENTS } from './constants/osArguments.js';
+import { colorText } from './helpers/colorText.js';
+import { COLORS } from './constants/colors.js';
 
 export const commandReducer = async ({ command, payload }) => {
   switch (command) {
@@ -30,7 +32,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       process.stdout.write('\x1Bc');
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.up:
@@ -41,7 +45,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       up();
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.cd:
@@ -53,7 +59,9 @@ export const commandReducer = async ({ command, payload }) => {
       const [destinationPath] = payload;
       await cd(destinationPath);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.ls:
@@ -64,7 +72,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       await ls();
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.os:
@@ -78,7 +88,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       os(osArgument);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.hash:
@@ -89,7 +101,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       await hash(...payload);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.compress:
@@ -100,7 +114,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       await compress(...payload);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.decompress:
@@ -111,7 +127,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       await decompress(...payload);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.cat:
@@ -122,7 +140,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       await cat(...payload);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.add:
@@ -133,7 +153,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       await add(...payload);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.rn:
@@ -144,7 +166,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       await rn(...payload);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.cp:
@@ -155,7 +179,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       await cp(...payload);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.mv:
@@ -166,7 +192,9 @@ export const commandReducer = async ({ command, payload }) => {
 
       await mv(...payload);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     case COMMANDS.rm:
@@ -177,12 +205,16 @@ export const commandReducer = async ({ command, payload }) => {
 
       await rm(...payload);
 
-      console.log(`You are currently in ${store.currentPath}`);
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
 
     default:
-      console.log('Invalid input');
-      console.log(`You are currently in ${store.currentPath}`);
+      console.error(colorText('Invalid input', COLORS.fg.red));
+      console.log(
+        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+      );
       break;
   }
 };

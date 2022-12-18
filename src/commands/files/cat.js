@@ -1,6 +1,8 @@
 import fs from 'fs';
 import { stdout } from 'process';
 import { correctPath } from '../../helpers/correctPath.js';
+import { colorText } from '../../helpers/colorText.js';
+import { COLORS } from '../../constants/colors.js';
 
 const readFile = (destinationPath) => {
   return new Promise((resolve, reject) => {
@@ -8,12 +10,19 @@ const readFile = (destinationPath) => {
 
     input.on('error', reject);
 
+    input.on('open', () => {
+      stdout.write(COLORS.fg.cyan);
+    });
+
     input.on('data', (data) => {
       stdout.write(data);
     });
 
-    input.on('close', resolve);
-    stdout.write('\n\n');
+    input.on('close', () => {
+      stdout.write(COLORS.reset);
+      stdout.write('\n');
+      resolve();
+    });
   });
 };
 
@@ -23,6 +32,6 @@ export const cat = async (filePath) => {
   try {
     await readFile(destinationPath);
   } catch (error) {
-    console.log(error.message);
+    console.error(colorText(error.message, COLORS.fg.red));
   }
 };

@@ -1,6 +1,8 @@
 import fs from 'fs';
 import zlib from 'zlib';
 import { BROTLI_ACTIONS } from '../constants/brotliActions.js';
+import { colorText } from './colorText.js';
+import { COLORS } from '../constants/colors.js';
 
 export const brotli = async (readFile, writeFile, action) => {
   return new Promise((resolve, reject) => {
@@ -14,10 +16,11 @@ export const brotli = async (readFile, writeFile, action) => {
     readStream.on('error', reject);
     writeStream.on('error', reject);
     stream.on('error', reject);
+    brotli.on('error', reject);
 
     stream.on('finish', () => {
       const doneText = action === BROTLI_ACTIONS.compress ? 'Compress done' : 'Decompress done';
-      console.log(doneText);
+      console.log(colorText(doneText, COLORS.fg.green));
       resolve();
     });
   });

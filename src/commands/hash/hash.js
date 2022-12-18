@@ -1,6 +1,8 @@
 import crypto from 'crypto';
 import fs from 'fs';
 import { correctPath } from '../../helpers/correctPath.js';
+import { colorText } from '../../helpers/colorText.js';
+import { COLORS } from '../../constants/colors.js';
 
 const getChecksum = (destinationPath) => {
   return new Promise((resolve, reject) => {
@@ -8,8 +10,6 @@ const getChecksum = (destinationPath) => {
     const input = fs.createReadStream(destinationPath);
 
     input.on('error', reject);
-
-    input.on('open', () => console.log('Hashing: ', destinationPath));
 
     input.on('data', (chunk) => {
       hash.update(chunk);
@@ -26,8 +26,8 @@ export const hash = async (filePath) => {
 
   try {
     const hash = await getChecksum(destinationPath);
-    console.log('Hash: ', hash);
+    console.log(colorText('Hash: ', COLORS.fg.green), colorText(hash, COLORS.fg.blue));
   } catch (error) {
-    console.log(error.message);
+    console.error(colorText(error.message, COLORS.fg.red));
   }
 };
