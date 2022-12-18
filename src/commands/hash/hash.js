@@ -3,6 +3,7 @@ import fs from 'fs';
 import { correctPath } from '../../helpers/correctPath.js';
 import { colorText } from '../../helpers/colorText.js';
 import { COLORS } from '../../constants/colors.js';
+import { stdin } from 'process';
 
 const getChecksum = (destinationPath) => {
   return new Promise((resolve, reject) => {
@@ -29,5 +30,6 @@ export const hash = async (filePath) => {
     console.log(colorText('Hash: ', COLORS.fg.green), colorText(hash, COLORS.fg.blue));
   } catch (error) {
     console.error(colorText(error.message, COLORS.fg.red));
+    stdin.emit('operationFailed');
   }
 };

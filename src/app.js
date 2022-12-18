@@ -22,7 +22,6 @@ export const app = (userName) => {
 
   stdin.on('operationFailed', () => {
     console.error(colorText('Operation failed', COLORS.fg.red));
-    printCurrentDir();
   });
 
   stdin.on('invalidInput', () => {

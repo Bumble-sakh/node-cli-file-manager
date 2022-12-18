@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { stdout } from 'process';
+import { stdin, stdout } from 'process';
 import { correctPath } from '../../helpers/correctPath.js';
 import { colorText } from '../../helpers/colorText.js';
 import { COLORS } from '../../constants/colors.js';
@@ -33,5 +33,6 @@ export const cat = async (filePath) => {
     await readFile(destinationPath);
   } catch (error) {
     console.error(colorText(error.message, COLORS.fg.red));
+    stdin.emit('operationFailed');
   }
 };

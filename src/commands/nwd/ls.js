@@ -36,5 +36,6 @@ export const ls = async () => {
     console.table(result);
   } catch (error) {
     console.error(colorText(error.message, COLORS.fg.red));
+    stdin.emit('operationFailed');
   }
 };

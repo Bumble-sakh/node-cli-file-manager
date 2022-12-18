@@ -73,9 +73,13 @@ export const commandReducer = async ({ command, payload }) => {
       const argument = payload[0].slice(2);
       const osArgument = OS_ARGUMENTS[argument];
 
-      os(osArgument);
+      try {
+        os(osArgument);
+        printCurrentDir();
+      } catch (error) {
+        stdin.emit('invalidInput');
+      }
 
-      printCurrentDir();
       break;
 
     case COMMANDS.hash:

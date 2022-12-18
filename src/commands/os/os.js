@@ -26,7 +26,7 @@ export const os = (osArgument) => {
       break;
 
     default:
-      stdin.emit('operationFailed');
+      throw new Error('Invalid input');
       break;
   }
 };
