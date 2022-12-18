@@ -6,12 +6,11 @@ import { COMMANDS } from './constants/commands.js';
 import { parseInput } from './helpers/parseInput.js';
 import { colorText } from './helpers/colorText.js';
 import { COLORS } from './constants/colors.js';
+import { printCurrentDir } from './helpers/printCurrentDir.js';
 
 export const app = (userName) => {
   console.log(`Welcome to the File Manager, ${colorText(userName, COLORS.fg.blue)}!`);
-  console.log(
-    `You are currently in ${colorText(store.startPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
-  );
+  printCurrentDir();
 
   stdin.read();
 
@@ -23,16 +22,12 @@ export const app = (userName) => {
 
   stdin.on('operationFailed', () => {
     console.error(colorText('Operation failed', COLORS.fg.red));
-    console.log(
-      `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
-    );
+    printCurrentDir();
   });
 
   stdin.on('invalidInput', () => {
     console.error(colorText('Invalid input', COLORS.fg.red));
-    console.log(
-      `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
-    );
+    printCurrentDir();
   });
 
   stdin.on('data', (data) => {
