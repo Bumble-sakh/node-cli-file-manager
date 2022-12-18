@@ -17,7 +17,7 @@ export const commandReducer = async ({ command, payload }) => {
   switch (command) {
     case COMMANDS['.exit']:
       if (payload.length > 0) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -26,7 +26,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS['.clear']:
       if (payload.length > 0) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -39,7 +39,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.up:
       if (payload.length > 0) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -52,7 +52,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.cd:
       if (payload.length !== 1) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -66,7 +66,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.ls:
       if (payload.length > 0) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -79,7 +79,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.os:
       if (payload.length !== 1) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -95,7 +95,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.hash:
       if (payload.length !== 1) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -108,7 +108,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.compress:
       if (payload.length !== 2) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -121,7 +121,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.decompress:
       if (payload.length !== 2) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -134,7 +134,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.cat:
       if (payload.length !== 1) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -147,7 +147,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.add:
       if (payload.length !== 1) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -160,7 +160,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.rn:
       if (payload.length !== 2) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -173,7 +173,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.cp:
       if (payload.length !== 2) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -186,7 +186,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.mv:
       if (payload.length !== 2) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -199,7 +199,7 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.rm:
       if (payload.length !== 1) {
-        stdin.emit('operationFailed');
+        stdin.emit('invalidInput');
         break;
       }
 
@@ -211,10 +211,7 @@ export const commandReducer = async ({ command, payload }) => {
       break;
 
     default:
-      console.error(colorText('Invalid input', COLORS.fg.red));
-      console.log(
-        `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
-      );
+      stdin.emit('invalidInput');
       break;
   }
 };

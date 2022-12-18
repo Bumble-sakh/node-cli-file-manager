@@ -28,6 +28,13 @@ export const app = (userName) => {
     );
   });
 
+  stdin.on('invalidInput', () => {
+    console.error(colorText('Invalid input', COLORS.fg.red));
+    console.log(
+      `You are currently in ${colorText(store.currentPath, COLORS.fg.yellow)}${colorText('>', COLORS.fg.yellow)}`
+    );
+  });
+
   stdin.on('data', (data) => {
     stdin.pause();
 
