@@ -7,6 +7,7 @@ import { compress, decompress } from './commands/brotli/index.js';
 import { COMMANDS } from './constants/commands.js';
 import { OS_ARGUMENTS } from './constants/osArguments.js';
 import { printCurrentDir } from './helpers/printCurrentDir.js';
+import { isFileName } from './helpers/isFileName.js';
 
 export const commandReducer = async ({ command, payload }) => {
   switch (command) {
@@ -132,6 +133,11 @@ export const commandReducer = async ({ command, payload }) => {
         break;
       }
 
+      if (!isFileName(payload[0])) {
+        stdin.emit('invalidInput');
+        break;
+      }
+
       await add(...payload);
 
       printCurrentDir();
@@ -139,6 +145,11 @@ export const commandReducer = async ({ command, payload }) => {
 
     case COMMANDS.rn:
       if (payload.length !== 2) {
+        stdin.emit('invalidInput');
+        break;
+      }
+
+      if (!isFileName(payload[1])) {
         stdin.emit('invalidInput');
         break;
       }
