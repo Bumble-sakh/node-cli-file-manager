@@ -6,8 +6,8 @@ import { COLORS } from '../constants/colors.js';
 
 export const brotli = async (readFile, writeFile, action) => {
   return new Promise((resolve, reject) => {
-    const readStream = fs.createReadStream(readFile);
-    const writeStream = fs.createWriteStream(writeFile);
+    const readStream = fs.createReadStream(readFile, { flags: 'r' });
+    const writeStream = fs.createWriteStream(writeFile, { flags: 'wx' });
 
     const brotli = action === BROTLI_ACTIONS.compress ? zlib.createBrotliCompress() : zlib.createBrotliDecompress();
 
